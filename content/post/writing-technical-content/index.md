@@ -17,7 +17,7 @@ On this page, you'll find some examples of the types of technical content that c
 
 ### Code
 
-Wowchemy supports a Markdown extension for highlighting code syntax. You can customize the styles under the `syntax_highlighter` option in your `config/_default/params.yaml` file.
+Wowchemy supports a Markdown extension for highlighting code syntax. You can customize the styles under the `syntax_highlighter` option in your `config/_default/params.yaml` file.6666
 
     ```python
     import pandas as pd
