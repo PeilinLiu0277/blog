@@ -974,7 +974,7 @@ Def：矩阵中非0元素的个数<<矩阵元素个数
 
 2. 链式存储 - 十字链表法：
 
-<img src="/Users/liuxiaolin/Library/Application Support/typora-user-images/image-20220316160515853.png" alt="image-20220316160515853" style="zoom: 67%;" />
+<img src="assets/image-20220316160515853.png" alt="image-20220316160515853" style="zoom: 67%;" />
 
 # Ch4. 串
 
@@ -1306,7 +1306,7 @@ void LevelOrder(BiTree T){
 
 根据递归还原二叉树
 
-<img src="/Users/liuxiaolin/Library/Application Support/typora-user-images/image-20220320163925802.png" alt="image-20220320163925802" style="zoom: 33%;" />
+<img src="assets/image-20220320163925802.png" alt="image-20220320163925802" style="zoom: 33%;" />
 
 ### 5.3.2 线索二叉树
 
@@ -2005,7 +2005,7 @@ n-1. 允许在V0、V1、... 、Vn-1中转
 
 **3.不通最短路径算法法对比**
 
-<img src="/Users/liuxiaolin/Library/Application Support/typora-user-images/image-20220401162903088.png" alt="image-20220401162903088" style="zoom:50%;" />
+<img src="assets/image-20220401162903088.png" alt="image-20220401162903088" style="zoom:50%;" />
 
 ### 6.4.3 有向无环图描述表达式
 
@@ -2480,7 +2480,7 @@ Ans：
   $$
   从关键字入手求：
 
-  <img src="/Users/liuxiaolin/Library/Application Support/typora-user-images/image-20220414211215297.png" alt="image-20220414211215297"  />
+  <img src="assets/image-20220414211215297.png" alt="image-20220414211215297"  />
 
 **2.B树的插入**
 
@@ -2514,7 +2514,7 @@ Ans：
 
 ### 7.4.2 B+树
 
-![image-20220414214325262](/Users/liuxiaolin/Library/Application Support/typora-user-images/image-20220414214325262.png)
+![image-20220414214325262](assets/image-20220414214325262.png)
 
 ⚠️无论查找成功与否，最终一定都要做到最下面一层结点
 	 叶子结点代表最下面一层的一块，一个叶子结点中含若干个关键字
@@ -2528,7 +2528,7 @@ Ans：
 
 **m阶B树 vs B+树：**
 
-<img src="/Users/liuxiaolin/Library/Application Support/typora-user-images/image-20220414215838487.png" alt="image-20220414215838487" style="zoom:80%;" />
+<img src="assets/image-20220414215838487.png" alt="image-20220414215838487" style="zoom:80%;" />
 
 ⚠️在B+树中，非叶结点不含有该关键字对应记录的存储地址。可以使一个磁盘块可以包含更多个关键字，使得B+树的阶更大，树高更矮，
 读磁盘次数更少，查找更快。
