@@ -1,7 +1,7 @@
 ---
 title: Machine Learning Notes of 🍉
-subtitle: 
-summary: 
+subtitle: Learn how machine learn?
+summary: For deep learning!
 authors: 
   - admin
 tags: []
