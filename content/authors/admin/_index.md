@@ -6,7 +6,7 @@ title: Peilin Liu
 superuser: true
 
 # Role/position
-role: Graduate of AI
+role: Graduate of Computer Science(AI)
 
 # Status emoji
 status:
