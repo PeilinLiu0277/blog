@@ -82,14 +82,6 @@ $$
 
 对于样例集D
 
-```
-{{</* math */>}}
-$$
-acc(f;D)=\frac{1}{m}\sum_{i=1}^{m}\mathbb{I}(f(x_i)= y_i)=1-E(f;D)
-$$
-{{</* math */>}}
-```
-
 
 $$
 acc(f;D)=\frac{1}{m}\sum_{i=1}^{m}\mathbb{I}(f(x_i)= y_i)=1-E(f;D)
@@ -100,3 +92,8 @@ acc(f;D)=\int_{x\sim D}\mathbb{I}(f(x)= y)p(x)dx=1-E(f;D)
 $$
 **查准率P**
 
+{{</* math */>}}
+$$
+\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}
+$$
+{{</* /math */>}}
