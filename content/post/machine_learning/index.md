@@ -66,3 +66,27 @@ Def：将数据集D划分为两个互斥的集合，其中一个集合作为训�
 
 ## 2.3 性能度量
 
+给定样例集 D = {(X1 , Y1) , (X2 , Y2)， . . . , (Xm, Ym)} ， 其中Yi是示例 Xi 的真实标记。要评估学习器f的性能，就要把学习器预测结果 f(x)与真实标记 y进行比较.
+
+**错误率**
+
+对于样例集D
+$$
+E(f;D)=\frac{1}{m}\sum_{i=1}^{m}\mathbb{I}(f(x_i)\neq y_i)
+$$
+对于数据分布D
+$$
+E(f;D)=\int_{x\sim D}\mathbb{I}(f(x)\neq y)p(x)dx
+$$
+**精度**
+
+对于样例集D
+$$
+acc(f;D)=\frac{1}{m}\sum_{i=1}^{m}\mathbb{I}(f(x_i)= y_i)=1-E(f;D)
+$$
+对于数据分布D
+$$
+acc(f;D)=\int_{x\sim D}\mathbb{I}(f(x)= y)p(x)dx=1-E(f;D)
+$$
+**查准率P**
+
