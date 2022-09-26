@@ -111,7 +111,7 @@ renders as
       ```js
       console.log('hello');
       console.log('code block');
-      ```
+```
     - Math: $x = {-b \pm \sqrt{b^2-4ac} \over 2a}$
 ```
 
