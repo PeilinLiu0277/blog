@@ -68,6 +68,8 @@ Def：将数据集D划分为两个互斥的集合，其中一个集合作为训�
 
 给定样例集 D = {(X1 , Y1) , (X2 , Y2)， . . . , (Xm, Ym)} ， 其中Yi是示例 Xi 的真实标记。要评估学习器f的性能，就要把学习器预测结果 f(x)与真实标记 y进行比较.
 
+### 错误率 & 精度
+
 **错误率**
 
 对于样例集D
@@ -90,8 +92,92 @@ $$
 $$
 acc(f;D)=\int_{x\sim D}\mathbb{I}(f(x)= y)p(x)dx=1-E(f;D)
 $$
-**查准率P**
 
-{{< math >}}
-$$\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}$$
-{{< /math >}}
+### 查准率 & 查全率
+
+**查准率P与查全率R**
+$$
+P=\frac{TP}{TP+FP}\\
+R=\frac{TP}{TP+FN}
+$$
+其中TP（真正例）、FP（假正例）、FN（假反例）、TN（真反例）=>TP+FP+FN+TN=样本总数
+
+| 预测类别\真实类别 | Postive      | Negative     |
+| ----------------- | ------------ | ------------ |
+| **Positive**      | TP（真正例） | FN（假反例） |
+| **Negative**      | FP（假正例） | TN（真反例） |
+
+1. 根据学习器的预测结果对样例进行排序，排在前面的是学习器认为"最可能 "是正例的样本，排在最后的则是学习器认为"最 不可能"是正例的样本
+
+2. 按此顺序逐个把样本作为正例进行预测 ，则每次可以计算出当前的查全率、查准率
+
+3. 得出P-R曲线<img src="assets/image-20220926231018569.png" alt="image-20220926231018569" style="zoom:50%;" />
+
+   [^平衡点BEP]: P=R
+
+**F1度量**（基于查准率和查全率的调和平均）：
+$$
+F1=\frac{2\times P\times R}{P+R}=\frac{2\times TP}{样例总数+TP-TN}\\
+F1的一般形式——F_\beta=\frac{(1+\beta^2)\times P\times R}{(\beta^2\times P)+R}
+$$
+ß=1时退化为F1；ß>1时查全率影响更大；ß<1时查准率影响更大
+
+*在有多个二分类混淆矩阵时：*
+
+- 先在各混淆矩阵上分别计算出查准率和查全率，再计算平均值可以得到：
+  - 宏查准率macro-P
+  - 宏查全率macro-R
+  - 宏F1macro-F1
+- 先将各混淆矩阵的对应元素进行平均，得到TP、FP、TN、FN的平均，基于这些平均值可以算出：
+  - 微查准率micro-P
+  - 微查全率micro-R
+  - 微F1micro-F1
+
+### ROC & AUC
+
+**ROC**（受试者工作特征曲线）
+
+根据学习器的预测结果对样例进行排序，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要量的值，分别以它们为横、纵坐标作图'就得到了 "ROC 曲线“
+
+ROC 曲线的纵轴是"真正例率" (True Positive Rate，简称 TPR) ，横轴是"假正例率" (False Positive Rate，简称 FPR) 
+
+$$
+TPR=\frac{TP}{TP+FN}\\
+FPR=\frac{FP}{TN+FP}
+$$
+=>好的模型——TPR高，FPR低
+
+<img src="assets/image-20220927154705942.png" alt="image-20220927154705942" style="zoom:50%;" />
+
+**AUC**：Area under the ROC，ROC曲线下的面积，AUC越大，模型越好
+	AUC考虑的是样本预测的排序质量，因此它与排序**损失loss**有紧密联系
+$$
+给定 m^+个正例和 m^-个反例,令 D^+ 和 D^-分别表示正、反例集合， 则排序的损失loss定义为：\\
+l_{rank}=\frac{1}{m^+m^-}\sum_{x^+\in D^+}\sum_{x^-\in D^-}\{\mathbb{I}(f(x^+)<f(x^-))+\frac{1}{2}\mathbb{I}(f(x^+)=f(x^-))\}\\
+AUC=1-l_{rank}
+$$
+
+### 代价敏感错误率 & 代价曲线
+
+**非均等代价**：为权衡不同类型错误所造成的不同损失设置的
+
+**代价矩阵（cost matrix）**：cost_ij表示将第i类样本预测为第j类样本的代价，cost_ii=0
+
+[^损失程度]: 与|cost_ij - cost_ji|成正比
+
+Eg. 二分类代价矩阵——<img src="assets/image-20220927162713449.png" alt="image-20220927162713449" style="zoom:50%;" />
+
+**代价敏感错误率**：
+<img src="assets/image-20220930155327385.png" alt="image-20220930155327385" style="zoom:50%;" />
+
+**代价曲线**
+
+<img src="assets/image-20220930165432066.png" alt="image-20220930165432066" style="zoom:50%;" />
+
+1. 参数：p=m+/m
+2. 目的：对于一个模型，根据p的不同，找到使得代价总期望最小的模型的阈值
+3. 横轴（正概率代价）：<img src="assets/image-20220930165309607.png" alt="image-20220930165309607" style="zoom:50%;" />
+   纵轴（归一化代价）：<img src="assets/image-20220930165338055.png" alt="image-20220930165338055" style="zoom:50%;" />
+
+## 2.4 比较检验
+
